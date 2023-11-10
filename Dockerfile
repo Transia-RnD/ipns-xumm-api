@@ -12,8 +12,8 @@ RUN pip install *.whl && rm -rf *.whl
 COPY ./*.whl ./
 RUN pip install *.whl && rm -rf *.whl
 
-ARG APP_ENV
-ENV APP_ENV=$APP_ENV
+ARG API_ENV
+ENV API_ENV=$API_ENV
 ARG API_PORT
 ENV API_PORT=$API_PORT
 

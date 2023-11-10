@@ -38,4 +38,4 @@ app.add_error_handler(
 
 # Main Flask App Run
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 9000)), debug=True)
+    app.run(host='0.0.0.0', port=int(os.environ.get('API_PORT', 9000)), debug=True)

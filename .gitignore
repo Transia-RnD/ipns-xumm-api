@@ -6,6 +6,7 @@ tmp
 .idea/
 /.eggs
 logs
+.venv
 
 # OS generated files #
 ######################

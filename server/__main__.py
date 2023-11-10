@@ -9,7 +9,7 @@ from server import error
 from flask_cors import CORS
 
 # common
-APP_ENV = 'config.TestConfig'
+API_ENV = os.environ.get('API_ENV', 'config.ProductionConfig')
 
 def main():
     app = connexion.App(__name__, specification_dir='./swagger/')
@@ -38,8 +38,8 @@ def main():
     )
     app.run(
         host='0.0.0.0',
-        port=int(os.environ.get('PORT', 9000)),
-        debug=False if APP_ENV == 'config.ProductionConfig' else True
+        port=int(os.environ.get('API_PORT', 9000)),
+        debug=False if API_ENV == 'config.ProductionConfig' else True
     )
 
 

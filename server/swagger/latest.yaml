@@ -35,7 +35,35 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/MessageResponse'
+                $ref: '#/components/schemas/IPNSPublishResponse'
+        "400":
+          description: Invalid Params supplied
+        "405":
+          description: Validation exception
+      security:
+      - bearerAuth:
+        - token_info
+      x-openapi-router-controller: server.controllers.ipns_controller
+  /ipns/resolve:
+    post:
+      tags:
+      - ipns
+      summary: Resolve an IPNS Name
+      operationId: ipns_resolve
+      requestBody:
+        description: Name to resolve
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPNSResolveRequest'
+        required: true
+      responses:
+        "200":
+          description: IPNS Resolve Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPNSResolveResponse'
         "400":
           description: Invalid Params supplied
         "405":
@@ -61,6 +89,27 @@ components:
         type: type
         message: message
     IPNSPublishRequest:
+      required:
+      - cid
+      type: object
+      properties:
+        cid:
+          type: string
+    IPNSPublishResponse:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+    IPNSResolveRequest:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+    IPNSResolveResponse:
       required:
       - cid
       type: object
