@@ -1,0 +1,75 @@
+openapi: 3.0.1
+info:
+  title: IPNS Xumm Api
+  contact:
+    email: dangell@transia.co
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+externalDocs:
+  description: What is IPNS Xumm API
+  url: https://ipns.transia.co
+servers:
+- url: https://ipns-api-3uzuax5sua-uc.a.run.app/v1
+tags:
+- name: ipns
+  description: IPNS API Endpoints
+paths:
+  /ipns/publish:
+    post:
+      tags:
+      - ipns
+      summary: Publish an IPNS CID
+      operationId: ipns_publish
+      requestBody:
+        description: CID to publish
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPNSPublishRequest'
+        required: true
+      responses:
+        "200":
+          description: IPNS Publish Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageResponse'
+        "400":
+          description: Invalid Params supplied
+        "405":
+          description: Validation exception
+      security:
+      - bearerAuth:
+        - token_info
+      x-openapi-router-controller: server.controllers.ipns_controller
+components:
+  schemas:
+    MessageResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        type:
+          type: string
+        message:
+          type: string
+      example:
+        code: 0
+        type: type
+        message: message
+    IPNSPublishRequest:
+      required:
+      - cid
+      type: object
+      properties:
+        cid:
+          type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      x-bearerInfoFunc: server.controllers.authentication_controller.bearer_auth

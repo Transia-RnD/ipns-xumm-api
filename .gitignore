@@ -1,0 +1,21 @@
+*.db
+__pycache__
+.idea/*
+*.pyc
+tmp
+.idea/
+/.eggs
+logs
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+
+# PyTest #
+######################
+.pytest_cache
+
+# Server files #
+######################
+env
