@@ -14,19 +14,24 @@ class IPNSPinRequest(Model):
 
     Do not edit the class manually.
     """
-    def __init__(self, json: Dict[str, object]=None):  # noqa: E501
+    def __init__(self, key: str=None, json: Dict[str, object]=None):  # noqa: E501
         """IPNSPinRequest - a model defined in Swagger
 
+        :param key: The key of this IPNSPinRequest.  # noqa: E501
+        :type key: str
         :param json: The json of this IPNSPinRequest.  # noqa: E501
         :type json: Dict[str, object]
         """
         self.swagger_types = {
+            'key': str,
             'json': Dict[str, object]
         }
 
         self.attribute_map = {
+            'key': 'key',
             'json': 'json'
         }
+        self._key = key
         self._json = json
 
     @classmethod
@@ -39,6 +44,27 @@ class IPNSPinRequest(Model):
         :rtype: IPNSPinRequest
         """
         return util.deserialize_model(dikt, cls)
+
+    @property
+    def key(self) -> str:
+        """Gets the key of this IPNSPinRequest.
+
+
+        :return: The key of this IPNSPinRequest.
+        :rtype: str
+        """
+        return self._key
+
+    @key.setter
+    def key(self, key: str):
+        """Sets the key of this IPNSPinRequest.
+
+
+        :param key: The key of this IPNSPinRequest.
+        :type key: str
+        """
+
+        self._key = key
 
     @property
     def json(self) -> Dict[str, object]:

@@ -118,9 +118,12 @@ components:
         message: message
     IPNSPinRequest:
       required:
+      # - key
       - json
       type: object
       properties:
+        key:
+          type: string
         json:
           type: object
           additionalProperties: {}
