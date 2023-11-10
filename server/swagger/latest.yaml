@@ -16,6 +16,34 @@ tags:
 - name: ipns
   description: IPNS API Endpoints
 paths:
+  /ipns/pin:
+    post:
+      tags:
+      - ipns
+      summary: Pin an IPNS Json
+      operationId: ipns_pin_json
+      requestBody:
+        description: Json to publish
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPNSPinRequest'
+        required: true
+      responses:
+        "200":
+          description: IPNS Pin Successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPNSPinResponse'
+        "400":
+          description: Invalid Params supplied
+        "405":
+          description: Validation exception
+      security:
+      - bearerAuth:
+        - token_info
+      x-openapi-router-controller: server.controllers.ipns_controller
   /ipns/publish:
     post:
       tags:
@@ -88,6 +116,21 @@ components:
         code: 0
         type: type
         message: message
+    IPNSPinRequest:
+      required:
+      - json
+      type: object
+      properties:
+        json:
+          type: object
+          additionalProperties: {}
+    IPNSPinResponse:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
     IPNSPublishRequest:
       required:
       - cid

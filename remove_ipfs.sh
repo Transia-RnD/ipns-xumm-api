@@ -33,7 +33,7 @@ fi
 
 # Close the ports on UFW that were opened for IPFS
 sudo ufw delete allow 4001/tcp
-sudo ufw delete allow 5001/tcp
+# sudo ufw delete allow 5001/tcp
 sudo ufw delete allow 8080/tcp
 sudo ufw delete allow 9000/tcp
 

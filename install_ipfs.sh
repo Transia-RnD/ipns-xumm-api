@@ -18,6 +18,9 @@ sudo bash install.sh
 # Initialize the IPFS node
 ipfs init
 
+# Update the IPFS configuration to listen on all interfaces for the gateway
+ipfs config Addresses.Gateway "/ip4/0.0.0.0/tcp/8080"
+
 # Create a systemd service file for IPFS
 IPFS_SERVICE_FILE="/etc/systemd/system/ipfs.service"
 echo "[Unit]
@@ -42,7 +45,7 @@ rm -rf "go-ipfs_${IPFS_VERSION}_linux-amd64.tar.gz" "go-ipfs"
 
 # Open necessary ports for IPFS on UFW
 sudo ufw allow 4001/tcp comment 'IPFS Swarm'
-sudo ufw allow 5001/tcp comment 'IPFS API'
+# sudo ufw allow 5001/tcp comment 'IPFS API'
 sudo ufw allow 8080/tcp comment 'IPFS Gateway'
 sudo ufw allow 9000/tcp comment 'IPNS Xumm API'
 

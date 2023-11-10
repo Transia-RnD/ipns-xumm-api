@@ -53,10 +53,24 @@ class AppIPFSService(object):
             return ipns_res['Name']
         except Exception as e:
             raise e
-
-    def ipns_publish(cls, cid: str):
+        
+    def create_key(cls, key_name: str):
         try:
-            ipns_res = cls.client.name.publish(f"/ipfs/{cid}")
+            key = cls.client.key.gen(key_name, type='rsa', size=2048)
+            return key['Name'], key['Id']
+        except Exception as e:
+            raise e
+        
+    def remove_key(cls, key_name: str):
+        try:
+            cls.client.key.rm(key_name)
+            return True
+        except Exception as e:
+            raise e
+
+    def ipns_publish(cls, cid: str, key_name: str):
+        try:
+            ipns_res = cls.client.name.publish(f"/ipfs/{cid}", key=key_name)
             return ipns_res['Name']
         except Exception as e:
             raise e

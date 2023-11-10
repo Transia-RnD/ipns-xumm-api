@@ -345,7 +345,7 @@ requests = ">=2.11"
 type = "git"
 url = "https://github.com/Transia-RnD/py-ipfs-http-client.git"
 reference = "HEAD"
-resolved_reference = "25e1dcb29e1bb286ba2c5ac0b7dcb2c501d2dede"
+resolved_reference = "a9cf1f9624c460d0341df976de733d0629d1c1f6"
 
 [[package]]
 name = "itsdangerous"
