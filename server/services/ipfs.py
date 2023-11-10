@@ -77,7 +77,6 @@ class AppIPFSService(object):
                 resolve=True,
                 allow_offline=True,
             )
-            print(ipns_res)
             return ipns_res["Name"]
         except Exception as e:
             raise e
