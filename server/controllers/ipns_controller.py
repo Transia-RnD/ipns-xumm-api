@@ -46,14 +46,11 @@ def ipns_pin_json(body, token_info: Dict[str, Any]):  # noqa: E501
 
         client = AppIPFSService(token_info['middleware'])
         try:
-            key_name, key_id = client.create_key(body.key)
-            print(key_id)
+            key_name, _ = client.create_key(body.key)
         except:
             key_name = body.key
 
-        print(key_name)
         cid = client.ipfs_json(body.json)
-        print(cid)
         ipns_name = client.ipns_publish(cid, key_name)
         return IPNSPinResponse(ipns_name)
 
