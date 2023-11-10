@@ -21,6 +21,15 @@ ipfs init
 # Update the IPFS configuration to listen on all interfaces for the gateway
 ipfs config Addresses.Gateway "/ip4/0.0.0.0/tcp/8080"
 
+# Set the Garbage Collection configuration
+ipfs config --json Datastore.GCPeriod '"1m"'
+ipfs config --json Datastore.StorageGCWatermark 90
+
+# Set the IPNS configuration
+ipfs config --json Ipns.RecordLifetime '"1m"'
+ipfs config --json Ipns.RepublishPeriod '"1m"'
+ipfs config --json Ipns.ResolveCacheSize 10
+
 # Create a systemd service file for IPFS
 IPFS_SERVICE_FILE="/etc/systemd/system/ipfs.service"
 echo "[Unit]
